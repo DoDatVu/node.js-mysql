@@ -5,7 +5,7 @@ var connection = mysql.mysql.createConnection({
   port: 3306,
   user: "root",
   password: "root",
-  database: ""
+  database: "scamazon_db"
 });
 
 connection.connect(function (err) {
@@ -23,15 +23,14 @@ function Afterconnection() {
   });
 }
 // create a table inside database called products
-
 // products table should have in columns
 // -item_id (unique id for each product)
 // -product_name (Name of product)
 // -department_name
 // -price (cost to customer)
-// -stock_quantity (how much of the product is avaiable in stores)
+// -stock_quantity (how much of the product is available in stores)
 
-// Populate this database 10 different prducts
+// Populate this database 10 different products
 
 // Create a Node Application called "bamazonCustomer.js"
 // App prompt users 2 messages
