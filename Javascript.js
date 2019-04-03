@@ -1,5 +1,6 @@
 // Create a MySQL Database/connection called bamazon
 var mysql = require("mysql");
+var inquirer = require("inquirer");
 var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
@@ -22,15 +23,7 @@ function Afterconnection() {
 
   });
 }
-// create a table inside database called products
-// products table should have in columns
-// -item_id (unique id for each product)
-// -product_name (Name of product)
-// -department_name
-// -price (cost to customer)
-// -stock_quantity (how much of the product is available in stores)
 
-// Populate this database 10 different products
 
 // Create a Node Application called "bamazonCustomer.js"
 // App prompt users 2 messages
