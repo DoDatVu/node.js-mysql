@@ -1,6 +1,6 @@
 // Create a MySQL Database/connection called bamazon
 var mysql = require("mysql");
-var connection = mysql.mysql.createConnection({
+var connection = mysql.createConnection({
   host: "localhost",
   port: 3306,
   user: "root",
@@ -11,7 +11,7 @@ var connection = mysql.mysql.createConnection({
 connection.connect(function (err) {
   if (err) throw err;
   console.log("connected as id" + connection.threadId);
-  Afterconnection.end();
+  Afterconnection();
 });
 
 function Afterconnection() {
