@@ -25,7 +25,7 @@ function Afterconnection() {
 }
 
 
-// Create a Node Application called "bamazonCustomer.js"
+
 // App prompt users 2 messages
 // -Ask them the ID of product they would like to buy
 // -how many units of the product they would like to buy
