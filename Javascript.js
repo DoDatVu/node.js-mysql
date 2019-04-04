@@ -45,17 +45,24 @@ var itemList = function () {
     type: "input",
     message: "What item would you like to buy?",
     validate: function (value) {
-      if (isNaN(value) == false) {
+      if ((value) == false) {
         return true;
       } else {
         return false;
       }
     }
   }]).then(function (answer) {
-
+    connection.query("INSERT INTO products SET ?",{
+      productname:answer.product,
+      departmentname:answer.department,
+      pricename:answer.price,
+      stockquantity:answer.quantity
+    },function(err,res) {
+      console.log("Bought!");
+      start();
+    })
   })
 }
-
 // -how many units of the product they would like to buy
 
 
