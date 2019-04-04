@@ -24,25 +24,42 @@ connection.connect(function (err) {
 //   });
 // }
 
-var start = function(){
+var start = function () {
   inquirer.prompt({
-    name:"buyItem",
-    type:"rawlist",
-    message:"What would you like to [BUY] an item",
-    choices:["YES","NO"]
-  }).then(function(answer){
-    if(answer.buyItem.toUppercase()=="YES"){
-      // Pull up Items
-    }else {
+    name: "buyItem",
+    type: "rawlist",
+    message: "What would you like to [BUY] an item",
+    choices: ["YES", "NO"]
+  }).then(function (answer) {
+    if (answer.buyItem.toUppercase() == "YES") {
+      itemList();
+    } else {
       // bye!
-
     }
   })
 }
-
-// App prompt users 2 messages
 // -Ask them the ID of product they would like to buy
+var itemList = function () {
+  inquirer.prompt([{
+    name: "item",
+    type: "input",
+    message: "What item would you like to buy?",
+    validate: function (value) {
+      if (isNaN(value) == false) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }]).then(function (answer) {
+
+  })
+}
+
 // -how many units of the product they would like to buy
+
+
+
 
 // Check if store has enough of the product to the customer's request
 // log phrase "INSUFFICIENT QUANTITY!"
