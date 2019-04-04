@@ -12,19 +12,33 @@ var connection = mysql.createConnection({
 connection.connect(function (err) {
   if (err) throw err;
   console.log("connected as id" + connection.threadId);
-  Afterconnection();
+  start();
 });
 
-function Afterconnection() {
-  connection.query("SELECT * FROM products", function (err, res) {
-    if (err) throw err;
-    console.log(res);
-    connection.end();
+// function Afterconnection() {
+//   connection.query("SELECT * FROM products", function (err, res) {
+//     if (err) throw err;
+//     console.log(res);
+//     connection.end();
 
-  });
+//   });
+// }
+
+var start = function(){
+  inquirer.prompt({
+    name:"buyItem",
+    type:"rawlist",
+    message:"What would you like to [BUY] an item",
+    choices:["YES","NO"]
+  }).then(function(answer){
+    if(answer.buyItem.toUppercase()=="YES"){
+      // Pull up Items
+    }else {
+      // bye!
+
+    }
+  })
 }
-
-
 
 // App prompt users 2 messages
 // -Ask them the ID of product they would like to buy
