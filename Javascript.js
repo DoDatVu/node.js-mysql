@@ -27,7 +27,7 @@ connection.connect(function (err) {
 var start = function () {
     connection.query("SELECT * FROM products", function (err, res) {
           console.log(res)
-          inquirer.prompt({
+          inquirer.prompt([{
             name: "choice",
             type: "rawlist",
             choices: function (value) {
@@ -37,9 +37,23 @@ var start = function () {
               }
               return choiceArray;
             },
-            message: "what product would you like?"
-          }).then(function (answer) {
-            
+            message: "what product would you like?",
+
+          },{
+            name:"inventory",
+            type:"input",
+            message:"How much do you wanna buy?",
+            validate: function(value) {
+              if (isNaN(value) === false) {
+                return true;
+              }
+              return false;
+            }
+          }]) 
+          .then(function (answer) {
+            console.log(answer.choice);
+            console.log(answer.inventory);
+            console.log(res);
           })
         })
       }
