@@ -23,53 +23,33 @@ connection.connect(function (err) {
 
 //   });
 // }
-
+ // -Ask them the ID of product they would like to buy
 var start = function () {
-  inquirer.prompt({
-    name: "buyItem",
-    type: "rawlist",
-    message: "What would you like to [BUY] an item",
-    choices: ["YES", "NO"]
-  }).then(function (answer) {
-    if (answer.buyItem.toUppercase() == "YES") {
-      itemList();
-    } else {
-      // bye!
-    }
-  })
-}
-// -Ask them the ID of product they would like to buy
-var itemList = function () {
-  inquirer.prompt([{
-    name: "item",
-    type: "input",
-    message: "What item would you like to buy?",
-    validate: function (value) {
-      if ((value) == false) {
-        return true;
-      } else {
-        return false;
+    connection.query("SELECT * FROM products", function (err, res) {
+          console.log(res)
+          inquirer.prompt({
+            name: "choice",
+            type: "rawlist",
+            choices: function (value) {
+              var choiceArray = [];
+              for (var i = 0; i < res.length; i++) {
+                choiceArray.push(res[i].product_name);
+              }
+              return choiceArray;
+            },
+            message: "what product would you like?"
+          }).then(function (answer) {
+            
+          })
+        })
       }
-    }
-  }]).then(function (answer) {
-    connection.query("INSERT INTO products SET ?",{
-      productname:answer.product,
-      departmentname:answer.department,
-      pricename:answer.price,
-      stockquantity:answer.quantity
-    },function(err,res) {
-      console.log("Bought!");
-      start();
-    })
-  })
-}
-// -how many units of the product they would like to buy
 
 
 
+    
+        // -how many units of the product they would like to buy
+        // Check if store has enough of the product to the customer's request
+        // log phrase "INSUFFICIENT QUANTITY!"
 
-// Check if store has enough of the product to the customer's request
-// log phrase "INSUFFICIENT QUANTITY!"
-
-// if store has enough updated remaining quantity
-// -update goes through show customer the total cost of their purchase
+        // if store has enough updated remaining quantity
+        // -update goes through show customer the total cost of their purchase
